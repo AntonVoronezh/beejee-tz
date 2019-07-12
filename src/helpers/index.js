@@ -1,5 +1,5 @@
 import statuses from './constants';
 import { AuthServiceProvider, AuthServiceConsumer } from './AuthServiceContext';
-import { FilterServiceConsumer, FilterServiceProvider } from './filterServiceContext';
+import { TasksServiceConsumer, TasksServiceProvider } from './TasksServiceContext';
 
-export { statuses, AuthServiceProvider, AuthServiceConsumer, FilterServiceConsumer, FilterServiceProvider };
+export { statuses, AuthServiceProvider, AuthServiceConsumer, TasksServiceConsumer, TasksServiceProvider };

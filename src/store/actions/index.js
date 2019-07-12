@@ -27,7 +27,7 @@ import {
 	CHANGE_PAGINATION_COUNT,
 	CHANGE_ACTIVE_PAGE_PAG,
 	changeActivePagePag,
-} from './filter';
+} from './tasks';
 
 export {
 	changeActivePageAC,

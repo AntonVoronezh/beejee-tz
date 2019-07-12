@@ -1,5 +1,5 @@
 import { LoginPage } from './LoginPage';
 import { MainPage } from './MainPage';
-import { FilterPage } from './FilterPage';
+import { TasksPage } from './TasksPage';
 
-export { LoginPage, MainPage, FilterPage };
+export { LoginPage, MainPage, TasksPage };

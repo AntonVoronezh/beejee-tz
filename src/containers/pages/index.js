@@ -1,6 +1,6 @@
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import LogoutPage from './LogoutPage';
-import FilterPage from './FilterPage';
+import TasksPage from './TasksPage';
 
-export { LoginPage, MainPage, LogoutPage, FilterPage };
+export { LoginPage, MainPage, LogoutPage, TasksPage };

@@ -26,7 +26,7 @@ const filterData = [
 	{ name: 'Name 25', active: false },
 ];
 
-export default class FilterServises {
+export default class BeeJeeService {
 	getFilterData() {
 		const data = () => {
 			if (Math.random() < 0.8) {

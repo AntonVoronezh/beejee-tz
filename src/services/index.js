@@ -1,4 +1,4 @@
 import AuthService from './authService';
-import FilterService from './filterService';
+import BeeJeeService from './beeJeeService';
 
-export { AuthService, FilterService };
+export { AuthService, BeeJeeService };

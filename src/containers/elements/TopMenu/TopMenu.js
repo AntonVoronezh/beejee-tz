@@ -7,12 +7,12 @@ import { changeActivePageAC } from '../../../store/actions';
 
 const menuListNotAuth = [
 	{ id: 1, to: '/', content: 'На главную' },
-	{ id: 2, to: '/filter', content: 'Фильтр' },
+	{ id: 2, to: '/tasks', content: 'Задачи' },
 	{ id: 3, to: '/login', content: 'Логин' },
 ];
 const menuListAuth = [
 	{ id: 1, to: '/', content: 'На главную' },
-	{ id: 2, to: '/filter', content: 'Фильтр' },
+	{ id: 2, to: '/tasks', content: 'Задачи' },
 	{ id: 3, to: '/logout', content: 'Выход' },
 ];
 

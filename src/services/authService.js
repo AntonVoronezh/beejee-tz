@@ -1,12 +1,12 @@
 export default class AuthService {
 	tryLogin(username, password) {
 		const data = () => {
-			if (username === 'aa' && password === '11') {
+			if (username === 'admin' && password === '123') {
 				return {
 					status: 'ok',
 					token: 'fbdfbsdfdfAsd9995-CVXVBXV9',
 					user: {
-						name: 'MITLabs',
+						name: 'BeeJee',
 					},
 				};
 			} else {

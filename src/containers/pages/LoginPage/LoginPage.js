@@ -17,7 +17,7 @@ class LoginPageContainer extends Component {
 			return <Spinner />;
 		}
 		if (isLoggedIn) {
-			return <Redirect to="/filter" />;
+			return <Redirect to="/tasks" />;
 		}
 
 		return <LoginPage {...rest} />;

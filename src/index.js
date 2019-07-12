@@ -7,20 +7,20 @@ import { Provider } from 'react-redux';
 
 import { App } from './components/App';
 import store from './store/store';
-import { AuthServiceProvider, FilterServiceProvider } from './helpers';
-import { AuthService, FilterService } from './services';
+import { AuthServiceProvider, TasksServiceProvider } from './helpers';
+import { AuthService, BeeJeeService } from './services';
 
 const storeService = store();
 const authService = new AuthService();
-const tasksService = new FilterService();
+const tasksService = new BeeJeeService();
 
 ReactDOM.render(
 	<Provider store={storeService}>
 		<BrowserRouter>
 			<AuthServiceProvider value={authService}>
-				<FilterServiceProvider value={tasksService}>
+				<TasksServiceProvider value={tasksService}>
 					<App />
-				</FilterServiceProvider>
+				</TasksServiceProvider>
 			</AuthServiceProvider>
 		</BrowserRouter>
 	</Provider>,

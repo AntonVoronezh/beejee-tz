@@ -1,5 +1,5 @@
 import menuRreducer from './menu';
 import loginRreducer from './login';
-import filterRreducer from './filter';
+import tasksRreducer from './tasks';
 
-export { menuRreducer, loginRreducer, filterRreducer };
+export { menuRreducer, loginRreducer, tasksRreducer };

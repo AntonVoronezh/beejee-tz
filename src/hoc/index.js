@@ -1,4 +1,4 @@
 import withAuthService from './withAuthService';
-import withFilterService from './withFilterService'
+import withTasksService from './withTasksService'
 
-export { withAuthService, withFilterService };
+export { withAuthService, withTasksService };
