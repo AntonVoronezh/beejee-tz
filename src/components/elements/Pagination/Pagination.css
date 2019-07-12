@@ -1,0 +1,26 @@
+.href {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: 1px solid #cccccc;
+}
+
+.href:hover {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.uk-disabled {
+    pointer-events: auto;
+}
+
+.uk-disabled:hover {
+    color: #000000;
+}
+
+.uk-background-primary .href{
+    color: #ffffff;
+}
