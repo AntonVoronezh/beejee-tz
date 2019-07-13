@@ -13,6 +13,7 @@ import { statuses } from '../../helpers';
 
 const initialState = {
 	tasks: [],
+	pageNum: 1,
 	filtered: [],
 	counted: [],
 	status: statuses.INIT,

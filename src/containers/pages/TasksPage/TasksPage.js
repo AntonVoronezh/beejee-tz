@@ -10,16 +10,16 @@ import { statuses } from '../../../helpers';
 import { Spinner } from '../../../components/elements';
 
 class TasksPageContainer extends Component {
-	// componentDidMount() {
-	// 	const {
-	// 		tasks: { tasks },
-	// 		getTasks,
-	// 	} = this.props;
+	componentDidMount() {
+		const {
+			tasks: { tasks },
+			getTasks,
+		} = this.props;
 
-	// 	if (tasks.length === 0) {
-	// 		getTasks();
-	// 	}
-	// }
+		if (tasks.length === 0) {
+			getTasks();
+		}
+	}
 
 	render() {
 		const {
@@ -53,7 +53,7 @@ const mapStateToProps = ({ login: { isLoggedIn }, tasks }) => {
 const mapDispatchToProps = (dispatch, { tasksService }) => {
 	return bindActionCreators(
 		{
-			// getTasks: fetchTasks(filterService),
+			getTasks: fetchTasks(tasksService),
 			// filterTasks,
 			// changeCount,
 		},

@@ -20,13 +20,16 @@ const changePaginationCountAC = () => ({
 	type: CHANGE_PAGINATION_COUNT,
 });
 
-const fetchTasks = service => () => dispatch => {
+const fetchTasks = service => () => (dispatch, getState) => {
 	dispatch(fetchFilterRequestAC());
+
+	const { tasks: {pageNum} } = getState();
+
 	service
-		.getFilterData()
+		.getTasks(pageNum)
 		.then(data => {
 			const { status, tasks, message } = data;
-
+			
 			if (status === 'ok') {
 				dispatch(fetchFilterSuccessAC(tasks));
 				dispatch(changePaginationCountAC());
@@ -43,7 +46,6 @@ const filteredArrAC = tasks => ({
 	type: FILTERED_ARR,
 	tasks,
 });
-
 
 const CHANGE_SELECT_COUNT = 'CHANGE_SELECT_COUNT';
 const changeSelectCountAC = count => ({
@@ -68,7 +70,7 @@ const changeActivePagePagAC = page => ({
 	page,
 });
 
-const changeActivePagePag = page => (dispatch) => {
+const changeActivePagePag = page => dispatch => {
 	dispatch(changeActivePagePagAC(page));
 	dispatch(changeCountedAC());
 };
@@ -92,7 +94,7 @@ const filterTasks = value => (dispatch, getState) => {
 			result = tasks;
 	}
 
-	dispatch(changePaginationCountAC())
+	dispatch(changePaginationCountAC());
 	dispatch(filteredArrAC(result));
 };
 
