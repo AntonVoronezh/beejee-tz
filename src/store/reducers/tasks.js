@@ -71,7 +71,7 @@ const filterRreducer = (state = initialState, action) => {
 			};
 		}
 		case ADD_TASK: {
-			const { username, email, text } = newTask;
+			const { name: username, mail: email, text } = newTask;
 			return {
 				...state,
 				newTask: {

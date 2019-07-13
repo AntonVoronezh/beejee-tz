@@ -26,10 +26,23 @@ export default class AuthService {
 
 	createTask = async (username, email, text) => {
 		const endPoint = `create?developer=anton`;
-
+		
 		const formData = new FormData();
 		formData.append('username', username);
 		formData.append('email', email);
+		formData.append('text', text);
+		formData.append('mimeType', 'multipart/form-data');
+
+		const response = await this._axiosInstance.post(endPoint, formData);
+
+		return this._getResourse(response, endPoint);
+	};
+
+	editTask = async (id, text, status) => {
+		const endPoint = `edit/:${id}?developer=anton`;
+		
+		const formData = new FormData();
+		formData.append('status', status);
 		formData.append('text', text);
 		formData.append('mimeType', 'multipart/form-data');
 

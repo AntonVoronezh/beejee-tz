@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import './NewTask.css';
 
-const NewTask = ({ createTask }) => {
+const NewTask = ({ createTask, addTask }) => {
 	const [name, setName] = useState('');
 	const [mail, setMail] = useState('');
 	const [text, setText] = useState('');
 
 	const newTaskSubmitHandler = e => {
 		e.preventDefault();
-		console.log(name, mail, text);
+		addTask({ name, mail, text });
 		createTask();
 	};
 

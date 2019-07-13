@@ -64,11 +64,12 @@ const createTask = service => () => (dispatch, getState) => {
 	dispatch(fetchTasksRequestAC());
 
 	const {
-		tasks: { pageNum, filter },
+		tasks: { newTask: {username, email, text} },
 	} = getState();
-	
+
 	service
-		.createTask('aaaa', 'ff@mm.yu', 'fdgdfgdfgdgdgfdfghdg')
+		.createTask(username, email, text)
+		// .createTask('aaaa', 'ff@mm.yu', 'fdgdfgdfgdgdgfdfghdg')
 		.then(data => {
 			const { status } = data;
 			if (status === 'ok') {
@@ -106,5 +107,6 @@ export {
 	CHANGE_ACTIVE_PAG,
 	changeActivePagAC,
 	createTask,
-	ADD_TASK
+	ADD_TASK,
+	addTaskAC
 };

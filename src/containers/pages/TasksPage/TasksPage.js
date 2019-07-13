@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
 
 import { TasksPage } from '../../../components/pages';
-import { fetchTasks, changeFilterAC, createTask } from '../../../store/actions';
+import { fetchTasks, changeFilterAC, createTask, addTaskAC } from '../../../store/actions';
 import { withTasksService } from '../../../hoc';
 import { statuses } from '../../../helpers';
 import { Spinner } from '../../../components/elements';
@@ -23,9 +22,17 @@ class TasksPageContainer extends Component {
 
 	componentDidUpdate(prevProps) {
 		const {
-			tasks: { filter, pageNum },
+			tasks: {
+				filter,
+				pageNum,
+				newTask: { username },
+			},
 		} = this.props;
-		if (filter !== prevProps.tasks.filter || pageNum !== prevProps.tasks.pageNum) {
+		if (
+			filter !== prevProps.tasks.filter ||
+			pageNum !== prevProps.tasks.pageNum ||
+			username !== prevProps.tasks.newTask.username
+		) {
 			this.props.getTasks();
 		}
 	}
@@ -35,18 +42,15 @@ class TasksPageContainer extends Component {
 			tasks: { status, ...rest },
 			isLoggedIn,
 			changeFilter,
-			createTask
+			createTask,
+			addTask,
 		} = this.props;
 
 		if (status === statuses.REQUEST) {
 			return <Spinner />;
 		}
 
-		if (isLoggedIn) {
-			return <TasksPage {...rest} changeFilter={changeFilter} createTask={createTask}/>;
-		}
-
-		return <Redirect to="/login" />;
+		return <TasksPage {...rest} isLoggedIn={isLoggedIn} changeFilter={changeFilter} createTask={createTask} addTask={addTask} />;
 	}
 }
 
@@ -62,7 +66,8 @@ const mapDispatchToProps = (dispatch, { tasksService }) => {
 		{
 			getTasks: fetchTasks(tasksService),
 			changeFilter: changeFilterAC,
-			createTask: createTask(tasksService)
+			createTask: createTask(tasksService),
+			addTask: addTaskAC,
 		},
 		dispatch
 	);
