@@ -1,55 +1,40 @@
-const filterData = [
-	{ name: 'Name 1', active: true },
-	{ name: 'Name 2', active: false },
-	{ name: 'Name 3', active: true },
-	{ name: 'Name 4', active: true },
-	{ name: 'Name 5', active: false },
-	{ name: 'Name 6', active: false },
-	{ name: 'Name 7', active: true },
-	{ name: 'Name 8', active: true },
-	{ name: 'Name 9', active: true },
-	{ name: 'Name 10', active: false },
-	{ name: 'Name 11', active: true },
-	{ name: 'Name 12', active: true },
-	{ name: 'Name 13', active: true },
-	{ name: 'Name 14', active: true },
-	{ name: 'Name 15', active: false },
-	{ name: 'Name 16', active: true },
-	{ name: 'Name 17', active: true },
-	{ name: 'Name 18', active: false },
-	{ name: 'Name 19', active: true },
-	{ name: 'Name 20', active: true },
-	{ name: 'Name 21', active: false },
-	{ name: 'Name 22', active: true },
-	{ name: 'Name 23', active: false },
-	{ name: 'Name 24', active: true },
-	{ name: 'Name 25', active: false },
-];
+import axios from 'axios';
 
-export default class BeeJeeService {
-	getFilterData() {
-		const data = () => {
-			if (Math.random() < 0.8) {
-				return {
-					status: 'ok',
-					tasks: filterData,
-				};
-			} else {
-				return {
-					status: 'err',
-					message: 'данные не получены',
-				};
-			}
-		};
+export default class AuthService {
+	_axiosInstance = axios.create({
+		baseURL: 'https://uxcandy.com/~shapoval/test-task-backend/?developer=Name',
+		// withCredentials: true,
+		headers: {
+			'content-type': ' application/json',
+		},
+	});
 
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				if (Math.random() > 0.8) {
-					reject(new Error('Network Error'));
-				} else {
-					resolve(data());
-				}
-			}, 1200);
+
+	_getResourse =  (response, url) => {
+		if (!response.status === 200) {
+			throw new Error(`Could not fetch ${url}, resived ${response.status}`);
+		}
+		
+		return response.data;
+	};
+
+	tryLogin = async (email, password) => {
+		const endPoint = `validate`;
+		const data = JSON.stringify({
+			email,
+			password,
 		});
-	}
+		const response = await this._axiosInstance.post(endPoint, data);
+
+		return this._getResourse(response, endPoint);
+	};
+
+	getUser = async id => {
+		const endPoint = `user-info/${id}`;
+		const response = await this._axiosInstance.get(endPoint);
+
+		return this._getResourse(response, endPoint);
+	};
+
 }
+
