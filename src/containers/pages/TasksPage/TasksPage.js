@@ -4,14 +4,12 @@ import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 
 import { TasksPage } from '../../../components/pages';
-import { fetchTasks, changeFilterAC } from '../../../store/actions';
+import { fetchTasks, changeFilterAC, changeActivePagAC } from '../../../store/actions';
 import { withTasksService } from '../../../hoc';
 import { statuses } from '../../../helpers';
 import { Spinner } from '../../../components/elements';
 
 class TasksPageContainer extends Component {
-
-	
 	componentDidMount() {
 		const {
 			tasks: { tasks },
@@ -24,16 +22,19 @@ class TasksPageContainer extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.tasks.filter !== prevProps.tasks.filter) {
+		const {
+			tasks: { filter, pageNum },
+		} = this.props;
+		if (filter !== prevProps.tasks.filter || pageNum !== prevProps.tasks.pageNum) {
 			this.props.getTasks();
 		}
 	}
 
 	render() {
 		const {
-			tasks: { status,  ...rest},
+			tasks: { status, ...rest },
 			isLoggedIn,
-			changeFilter
+			changeFilter,
 		} = this.props;
 
 		if (status === statuses.REQUEST) {
@@ -41,9 +42,7 @@ class TasksPageContainer extends Component {
 		}
 
 		if (isLoggedIn) {
-			return (
-				<TasksPage {...rest} changeFilter={changeFilter}/>
-			);
+			return <TasksPage {...rest} changeFilter={changeFilter} />;
 		}
 
 		return <Redirect to="/login" />;
@@ -61,12 +60,10 @@ const mapDispatchToProps = (dispatch, { tasksService }) => {
 	return bindActionCreators(
 		{
 			getTasks: fetchTasks(tasksService),
-			changeFilter: changeFilterAC
-			// changeCount,
+			changeFilter: changeFilterAC,
 		},
 		dispatch
 	);
-
 };
 
 export default withTasksService()(

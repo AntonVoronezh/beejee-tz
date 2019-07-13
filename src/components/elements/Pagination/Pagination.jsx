@@ -3,11 +3,11 @@ import ReactPaginate from 'react-paginate';
 
 import './Pagination.css'
 
-const Pagination = ({ tasksCount, tasks, changePagPage = () => {}, pagPage = 1 }) => {
-	const pageCount = Math.ceil(tasksCount / tasks.length);
-
+const Pagination = ({ tasksCount, pageNum, changeActivePage }) => {
+	const pageCount = Math.ceil(tasksCount / 3);
+	
 	const onPageChange = ({ selected }) => {
-		changePagPage(selected + 1);
+		changeActivePage(selected + 1);
 	};
 
 	const pag =
@@ -29,7 +29,7 @@ const Pagination = ({ tasksCount, tasks, changePagPage = () => {}, pagPage = 1 }
 				nextLinkClassName={'page-link'}
 				activeClassName={'uk-active-pag'}
 				onPageChange={onPageChange}
-				forcePage={pagPage - 1}
+				forcePage={pageNum - 1}
 			/>
 		) : null;
 

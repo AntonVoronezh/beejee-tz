@@ -7,7 +7,7 @@ import { Pagination } from '../../../containers/elements';
 import { NewTask } from '../../elements/';
 
 // const FilterPage = ({ errorMsg, tasks: tasksArr = [], filterTasks, changeSelect }) => {
-const FilterPage = ({ errorMsg, tasks: tasksArr = [] , changeFilter}) => {
+const FilterPage = ({ errorMsg, tasks: tasksArr = [], changeFilter, changeActivePage }) => {
 	// return <div>FilterPage</div>
 
 	const error = errorMsg ? <div className="uk-text-danger">{errorMsg}</div> : null;

@@ -4,7 +4,7 @@ import {
 	FETCH_TASKS_FAILURE,
 	CHANGE_FILTER,
 	CHANGE_PAGES_COUNT,
-	CHANGE_ACTIVE_PAG
+	CHANGE_ACTIVE_PAG,
 } from '../actions';
 
 import { statuses } from '../../helpers';
@@ -48,6 +48,8 @@ const filterRreducer = (state = initialState, action) => {
 			return {
 				...state,
 				filter,
+				pageNum: 1,
+				tasksCount: 0,
 			};
 		}
 		case CHANGE_PAGES_COUNT: {
