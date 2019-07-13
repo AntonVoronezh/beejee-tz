@@ -27,11 +27,6 @@ const changePagesCountAC = tasksCount => ({
 	tasksCount,
 });
 
-// const CHANGE_PAGINATION_COUNT = 'CHANGE_PAGINATION_COUNT';
-// const changePaginationCountAC = () => ({
-// 	type: CHANGE_PAGINATION_COUNT,
-// });
-
 const fetchTasks = service => () => (dispatch, getState) => {
 	dispatch(fetchTasksRequestAC());
 
@@ -59,39 +54,46 @@ const fetchTasks = service => () => (dispatch, getState) => {
 		.catch(err => dispatch(fetchTasksFailureAC(err.message)));
 };
 
-// const FILTERED_ARR = 'FILTERED_ARR';
-// const filteredArrAC = tasks => ({
-// 	type: FILTERED_ARR,
-// 	tasks,
-// });
+const ADD_TASK = 'ADD_TASK';
+const addTaskAC = newTask => ({
+	type: ADD_TASK,
+	newTask,
+});
 
-// const CHANGE_SELECT_COUNT = 'CHANGE_SELECT_COUNT';
-// const changeSelectCountAC = count => ({
-// 	type: CHANGE_SELECT_COUNT,
-// 	count,
-// });
+const createTask = service => () => (dispatch, getState) => {
+	dispatch(fetchTasksRequestAC());
 
-// const CHANGE_COUNTED = 'CHANGE_COUNTED';
-// const changeCountedAC = () => ({
-// 	type: CHANGE_COUNTED,
-// });
+	const {
+		tasks: { pageNum, filter },
+	} = getState();
+	
+	service
+		.createTask('aaaa', 'ff@mm.yu', 'fdgdfgdfgdgdgfdfghdg')
+		.then(data => {
+			const { status } = data;
+			if (status === 'ok') {
+				const {
+					message: { tasks, total_task_count },
+				} = data;
+				dispatch(fetchTasksSuccessAC(tasks));
+				dispatch(changePagesCountAC(Number(total_task_count)));
+				// dispatch(changePaginationCountAC());
+			} else if (status === 'error') {
+				const { message } = data;
+				dispatch(fetchTasksFailureAC(message[0]));
+			}
+		})
 
-// const changeCount = count => (dispatch, getState) => {
-// 	dispatch(changeSelectCountAC(count));
-// 	dispatch(changePaginationCountAC());
-// 	dispatch(changeCountedAC());
-// };
+		.catch(err => dispatch(fetchTasksFailureAC(err.message[0])));
+};
+
+
 
 const CHANGE_ACTIVE_PAG = 'CHANGE_ACTIVE_PAG';
 const changeActivePagAC = pageNum => ({
 	type: CHANGE_ACTIVE_PAG,
 	pageNum,
 });
-// const changeActivePagePag = page => dispatch => {
-// 	dispatch(changeActivePagePagAC(page));
-// 	dispatch(changeCountedAC());
-// };
-// 
 
 export {
 	fetchTasks,
@@ -102,5 +104,7 @@ export {
 	changeFilterAC,
 	CHANGE_PAGES_COUNT,
 	CHANGE_ACTIVE_PAG,
-	changeActivePagAC
+	changeActivePagAC,
+	createTask,
+	ADD_TASK
 };

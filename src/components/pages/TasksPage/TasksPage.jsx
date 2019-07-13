@@ -6,30 +6,11 @@ import { Task } from '../../elements';
 import { Pagination } from '../../../containers/elements';
 import { NewTask } from '../../elements/';
 
-// const FilterPage = ({ errorMsg, tasks: tasksArr = [], filterTasks, changeSelect }) => {
-const FilterPage = ({ errorMsg, tasks: tasksArr = [], changeFilter, changeActivePage }) => {
-	// return <div>FilterPage</div>
-
+const FilterPage = ({ errorMsg, tasks: tasksArr = [], changeFilter, createTask }) => {
 	const error = errorMsg ? <div className="uk-text-danger">{errorMsg}</div> : null;
 	const tasks = tasksArr.map((el, idx) => {
 		return <Task key={idx} {...el} />;
 	});
-
-	// const allButtonHandler = () => {
-	// 	filterTasks('All');
-	// };
-
-	// const activeButtonHandler = () => {
-	// 	filterTasks('Active');
-	// };
-
-	// const inactiveButtonHandler = () => {
-	// 	filterTasks('NonActive');
-	// };
-
-	// const selectHandler = event => {
-	// 	changeSelect(Number(event.target.value));
-	// };
 
 	const changeSortButtonHandler = status => {
 		changeFilter(status);
@@ -61,8 +42,8 @@ const FilterPage = ({ errorMsg, tasks: tasksArr = [], changeFilter, changeActive
 				<tbody>{tasks}</tbody>
 			</table>
 
-			{/* <NewTask /> */}
 			<Pagination />
+			<NewTask createTask={createTask}/>
 		</Fragment>
 	);
 };

@@ -22,7 +22,9 @@ import {
 	changeFilterAC,
 	CHANGE_PAGES_COUNT,
 	CHANGE_ACTIVE_PAG,
-	changeActivePagAC
+	changeActivePagAC,
+	createTask,
+	ADD_TASK
 } from './tasks';
 
 export { changeActivePageAC, CHANGE_ACTIVE_PAGE };
@@ -51,5 +53,7 @@ export {
 	changeFilterAC,
 	CHANGE_PAGES_COUNT,
 	CHANGE_ACTIVE_PAG,
-	changeActivePagAC
+	changeActivePagAC,
+	createTask,
+	ADD_TASK
 };
