@@ -22,9 +22,9 @@ const changeFilterAC = filter => ({
 });
 
 const CHANGE_PAGES_COUNT = 'CHANGE_PAGES_COUNT';
-const changePagesCountAC = pagesCount => ({
+const changePagesCountAC = tasksCount => ({
 	type: CHANGE_PAGES_COUNT,
-	pagesCount,
+	tasksCount,
 });
 
 // const CHANGE_PAGINATION_COUNT = 'CHANGE_PAGINATION_COUNT';
@@ -48,6 +48,7 @@ const fetchTasks = service => () => (dispatch, getState) => {
 					message: { tasks, total_task_count },
 				} = data;
 				dispatch(fetchTasksSuccessAC(tasks));
+				dispatch(changePagesCountAC(Number(total_task_count)));
 				// dispatch(changePaginationCountAC());
 			} else if (status === 'error') {
 				const { message } = data;
@@ -92,4 +93,12 @@ const fetchTasks = service => () => (dispatch, getState) => {
 // 	dispatch(changeCountedAC());
 // };
 
-export { fetchTasks, FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE, CHANGE_FILTER, changeFilterAC };
+export {
+	fetchTasks,
+	FETCH_TASKS_REQUEST,
+	FETCH_TASKS_SUCCESS,
+	FETCH_TASKS_FAILURE,
+	CHANGE_FILTER,
+	changeFilterAC,
+	CHANGE_PAGES_COUNT,
+};

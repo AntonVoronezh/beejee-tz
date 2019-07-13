@@ -20,6 +20,7 @@ import {
 	FETCH_TASKS_FAILURE,
 	CHANGE_FILTER,
 	changeFilterAC,
+	CHANGE_PAGES_COUNT,
 } from './tasks';
 
 export { changeActivePageAC, CHANGE_ACTIVE_PAGE };
@@ -39,4 +40,12 @@ export {
 	ADD_NAME,
 };
 
-export { fetchTasks, FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE, CHANGE_FILTER, changeFilterAC };
+export {
+	fetchTasks,
+	FETCH_TASKS_REQUEST,
+	FETCH_TASKS_SUCCESS,
+	FETCH_TASKS_FAILURE,
+	CHANGE_FILTER,
+	changeFilterAC,
+	CHANGE_PAGES_COUNT,
+};

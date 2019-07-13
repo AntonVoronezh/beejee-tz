@@ -62,7 +62,7 @@ const FilterPage = ({ errorMsg, tasks: tasksArr = [] , changeFilter}) => {
 			</table>
 
 			{/* <NewTask /> */}
-			{/* <Pagination /> */}
+			<Pagination />
 		</Fragment>
 	);
 };

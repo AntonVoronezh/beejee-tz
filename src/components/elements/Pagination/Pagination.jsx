@@ -1,33 +1,38 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 
-import './Pagination.css';
-
-const PaginationE = ({ onChange, activePage, pagesTotal }) => {
-	const handlePageChange = i => {
-		onChange(i);
+const Pagination = ({ totalCount, length, changePagPage, fetchPersonList, pagPage }) => {
+	const pageCount = Math.ceil(totalCount / length);
+	
+	const onPageChange = ({ selected }) => {
+		changePagPage(selected + 1);
+		fetchPersonList();
 	};
 
-	const arr = [];
-	for (let i = 1; i <= pagesTotal; i += 1) {
-		arr.push(i);
-	}
+	const pag =
+		totalCount !== 0 ? (
+			<ReactPaginate
+				previousLabel={'previous'}
+				nextLabel={'next'}
+				breakLabel={'...'}
+				breakClassName={'page-item'}
+				pageCount={pageCount}
+				marginPagesDisplayed={2}
+				pageRangeDisplayed={5}
+				containerClassName={'pagination'}
+				pageClassName={'page-item'}
+				previousClassName={'page-item'}
+				nextClassName={'page-item'}
+				pageLinkClassName={'page-link'}
+				previousLinkClassName={'page-link'}
+				nextLinkClassName={'page-link'}
+				activeClassName={'active'}
+				onPageChange={onPageChange}
+				forcePage={pagPage - 1}
+			/>
+		) : null;
 
-	const pagination = arr.map(i => {
-		return (
-			<li key={i} onClick={() => handlePageChange(i)}>
-				<span className={activePage === i ? 'uk-background-primary href' : 'uk-disabled href'}>{i}</span>
-			</li>
-		);
-	});
-
-	return <ul className="uk-pagination">{pagination}</ul>;
+	return <div>{pag}</div>;
 };
 
-export default PaginationE;
-
-PaginationE.propTypes = {
-	activePage: PropTypes.number.isRequired,
-	onChange: PropTypes.func.isRequired,
-};
-
+export default Pagination;

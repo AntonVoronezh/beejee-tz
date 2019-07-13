@@ -1,18 +1,24 @@
-import { FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE, CHANGE_FILTER } from '../actions';
+import {
+	FETCH_TASKS_REQUEST,
+	FETCH_TASKS_SUCCESS,
+	FETCH_TASKS_FAILURE,
+	CHANGE_FILTER,
+	CHANGE_PAGES_COUNT,
+} from '../actions';
 
 import { statuses } from '../../helpers';
 
 const initialState = {
 	tasks: [],
 	pageNum: 1,
-	pagesCount: 1,
+	tasksCount: 0,
 	filter: 'id',
 	status: statuses.INIT,
 	errorMsg: null,
 };
 
 const filterRreducer = (state = initialState, action) => {
-	const { type, tasks, errorMsg, filter } = action;
+	const { type, tasks, errorMsg, filter, tasksCount } = action;
 
 	switch (type) {
 		case FETCH_TASKS_REQUEST: {
@@ -41,6 +47,12 @@ const filterRreducer = (state = initialState, action) => {
 			return {
 				...state,
 				filter,
+			};
+		}
+		case CHANGE_PAGES_COUNT: {
+			return {
+				...state,
+				tasksCount,
 			};
 		}
 

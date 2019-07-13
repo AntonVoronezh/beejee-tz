@@ -10,9 +10,9 @@ class PaginationContainer extends Component {
 	}
 }
 
-const mapStateToProps = ({ tasks: { pagination } }) => {
+const mapStateToProps = ({ tasks }) => {
 	return {
-		...pagination,
+		...tasks,
 	};
 };
 
