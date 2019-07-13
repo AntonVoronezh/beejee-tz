@@ -23,19 +23,17 @@ class TasksPageContainer extends Component {
 
 	render() {
 		const {
-			// tasks: { status, counted, errorMsg },
-			// filterTasks,
-			// changeCount,
+			tasks: { status,  ...rest},
 			isLoggedIn,
 		} = this.props;
 
-		// if (status === statuses.REQUEST) {
-		// 	return <Spinner />;
-		// }
+		if (status === statuses.REQUEST) {
+			return <Spinner />;
+		}
 
 		if (isLoggedIn) {
 			return (
-				<TasksPage  />
+				<TasksPage {...rest} />
 			);
 		}
 

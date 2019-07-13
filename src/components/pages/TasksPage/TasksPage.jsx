@@ -7,7 +7,7 @@ import { Pagination } from '../../../containers/elements';
 import { NewTask } from '../../elements/';
 
 // const FilterPage = ({ errorMsg, tasks: tasksArr = [], filterTasks, changeSelect }) => {
-const FilterPage = ({ errorMsg, tasks: tasksArr = [], filterTasks, changeSelect }) => {
+const FilterPage = ({ errorMsg, tasks: tasksArr = [] }) => {
 	// return <div>FilterPage</div>
 
 	const error = errorMsg ? <div className="uk-text-danger">{errorMsg}</div> : null;
@@ -48,9 +48,21 @@ const FilterPage = ({ errorMsg, tasks: tasksArr = [], filterTasks, changeSelect 
 				Сортировать по статусу
 			</button>
 			{error}
-			{tasks}
-			<NewTask />
-			<Pagination />
+			<table className="uk-table">
+				<caption>Список задач</caption>
+				<thead>
+					<tr>
+						<th>Имя</th>
+						<th>Почта</th>
+						<th>Задача</th>
+						<th>Выполнено</th>
+					</tr>
+				</thead>
+				<tbody>{tasks}</tbody>
+			</table>
+
+			{/* <NewTask /> */}
+			{/* <Pagination /> */}
 		</Fragment>
 	);
 };

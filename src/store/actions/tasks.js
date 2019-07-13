@@ -28,12 +28,13 @@ const fetchTasks = service => () => (dispatch, getState) => {
 	service
 		.getTasks(pageNum, filter)
 		.then(data => {
-			const { status, tasks, message } = data;
-			
+			const { status } = data;
 			if (status === 'ok') {
+				const { message: {tasks, total_task_count} } = data;
 				dispatch(fetchTasksSuccessAC(tasks));
 				// dispatch(changePaginationCountAC());
 			} else if (status === 'error') {
+				const { message } = data;
 				dispatch(fetchTasksFailureAC(message));
 			}
 		})
