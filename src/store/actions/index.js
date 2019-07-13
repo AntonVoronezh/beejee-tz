@@ -13,7 +13,14 @@ import {
 
 import { FETCH_LOGIN_REQUEST, FETCH_LOGIN_SUCCESS, FETCH_LOGIN_FAILURE, ADD_NAME } from './login';
 
-import { fetchTasks, FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE } from './tasks';
+import {
+	fetchTasks,
+	FETCH_TASKS_REQUEST,
+	FETCH_TASKS_SUCCESS,
+	FETCH_TASKS_FAILURE,
+	CHANGE_FILTER,
+	changeFilterAC,
+} from './tasks';
 
 export { changeActivePageAC, CHANGE_ACTIVE_PAGE };
 
@@ -32,4 +39,4 @@ export {
 	ADD_NAME,
 };
 
-export { fetchTasks, FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE };
+export { fetchTasks, FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE, CHANGE_FILTER, changeFilterAC };

@@ -17,5 +17,5 @@ const Task = ({ id, username, email, text, status }) => {
 export default Task;
 
 Task.propTypes = {
-	name: PropTypes.string.isRequired,
+	// name: PropTypes.string.isRequired,
 };

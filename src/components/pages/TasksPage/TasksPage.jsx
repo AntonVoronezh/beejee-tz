@@ -31,20 +31,20 @@ const FilterPage = ({ errorMsg, tasks: tasksArr = [] }) => {
 	// 	changeSelect(Number(event.target.value));
 	// };
 
-	const nameSortButtonHandler = () => {};
-	const emailSortButtonHandler = () => {};
-	const statusSortButtonHandler = () => {};
+	const changeSortButtonHandler = status => {
+
+	};
 
 	return (
 		<Fragment>
 			<h1 className="uk-heading-divider">Страница Задач</h1>
-			<button className="uk-button uk-button-default mr" onClick={nameSortButtonHandler}>
+			<button className="uk-button uk-button-default mr" onClick={() => changeSortButtonHandler('username')}>
 				Сортировать по имени
 			</button>
-			<button className="uk-button uk-button-default mr" onClick={emailSortButtonHandler}>
+			<button className="uk-button uk-button-default mr" onClick={() => changeSortButtonHandler('email')}>
 				Сортировать по email
 			</button>
-			<button className="uk-button uk-button-default mr" onClick={statusSortButtonHandler}>
+			<button className="uk-button uk-button-default mr" onClick={() => changeSortButtonHandler('status')}>
 				Сортировать по статусу
 			</button>
 			{error}

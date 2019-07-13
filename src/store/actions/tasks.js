@@ -15,6 +15,12 @@ const fetchTasksFailureAC = errorMsg => ({
 	errorMsg,
 });
 
+const CHANGE_FILTER = 'CHANGE_FILTER';
+const changeFilterAC = filter => ({
+	type: CHANGE_FILTER,
+	filter,
+});
+
 // const CHANGE_PAGINATION_COUNT = 'CHANGE_PAGINATION_COUNT';
 // const changePaginationCountAC = () => ({
 // 	type: CHANGE_PAGINATION_COUNT,
@@ -23,14 +29,18 @@ const fetchTasksFailureAC = errorMsg => ({
 const fetchTasks = service => () => (dispatch, getState) => {
 	dispatch(fetchTasksRequestAC());
 
-	const { tasks: {pageNum, filter} } = getState();
+	const {
+		tasks: { pageNum, filter },
+	} = getState();
 
 	service
 		.getTasks(pageNum, filter)
 		.then(data => {
 			const { status } = data;
 			if (status === 'ok') {
-				const { message: {tasks, total_task_count} } = data;
+				const {
+					message: { tasks, total_task_count },
+				} = data;
 				dispatch(fetchTasksSuccessAC(tasks));
 				// dispatch(changePaginationCountAC());
 			} else if (status === 'error') {
@@ -76,9 +86,4 @@ const fetchTasks = service => () => (dispatch, getState) => {
 // 	dispatch(changeCountedAC());
 // };
 
-export {
-	fetchTasks,
-	FETCH_TASKS_REQUEST,
-	FETCH_TASKS_SUCCESS, 
-	FETCH_TASKS_FAILURE
-};
+export { fetchTasks, FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE, CHANGE_FILTER, changeFilterAC };

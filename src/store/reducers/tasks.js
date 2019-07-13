@@ -1,4 +1,4 @@
-import { FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE } from '../actions';
+import { FETCH_TASKS_REQUEST, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE, CHANGE_FILTER } from '../actions';
 
 import { statuses } from '../../helpers';
 
@@ -11,8 +11,8 @@ const initialState = {
 };
 
 const filterRreducer = (state = initialState, action) => {
-	const { type, tasks, errorMsg } = action;
-	
+	const { type, tasks, errorMsg, filter } = action;
+
 	switch (type) {
 		case FETCH_TASKS_REQUEST: {
 			return {
@@ -34,6 +34,12 @@ const filterRreducer = (state = initialState, action) => {
 				...state,
 				status: statuses.FAILURE,
 				errorMsg,
+			};
+		}
+		case CHANGE_FILTER: {
+			return {
+				...state,
+				filter,
 			};
 		}
 
