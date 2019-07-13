@@ -21,6 +21,12 @@ const changeFilterAC = filter => ({
 	filter,
 });
 
+const CHANGE_PAGES_COUNT = 'CHANGE_PAGES_COUNT';
+const changePagesCountAC = pagesCount => ({
+	type: CHANGE_PAGES_COUNT,
+	pagesCount,
+});
+
 // const CHANGE_PAGINATION_COUNT = 'CHANGE_PAGINATION_COUNT';
 // const changePaginationCountAC = () => ({
 // 	type: CHANGE_PAGINATION_COUNT,

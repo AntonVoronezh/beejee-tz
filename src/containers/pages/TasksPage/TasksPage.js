@@ -4,12 +4,14 @@ import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 
 import { TasksPage } from '../../../components/pages';
-import { fetchTasks, changeCount } from '../../../store/actions';
+import { fetchTasks, changeFilterAC } from '../../../store/actions';
 import { withTasksService } from '../../../hoc';
 import { statuses } from '../../../helpers';
 import { Spinner } from '../../../components/elements';
 
 class TasksPageContainer extends Component {
+
+	
 	componentDidMount() {
 		const {
 			tasks: { tasks },
@@ -21,10 +23,17 @@ class TasksPageContainer extends Component {
 		}
 	}
 
+	componentDidUpdate(prevProps) {
+		if (this.props.tasks.filter !== prevProps.tasks.filter) {
+			this.props.getTasks();
+		}
+	}
+
 	render() {
 		const {
 			tasks: { status,  ...rest},
 			isLoggedIn,
+			changeFilter
 		} = this.props;
 
 		if (status === statuses.REQUEST) {
@@ -33,7 +42,7 @@ class TasksPageContainer extends Component {
 
 		if (isLoggedIn) {
 			return (
-				<TasksPage {...rest} />
+				<TasksPage {...rest} changeFilter={changeFilter}/>
 			);
 		}
 
@@ -52,7 +61,7 @@ const mapDispatchToProps = (dispatch, { tasksService }) => {
 	return bindActionCreators(
 		{
 			getTasks: fetchTasks(tasksService),
-			// filterTasks,
+			changeFilter: changeFilterAC
 			// changeCount,
 		},
 		dispatch

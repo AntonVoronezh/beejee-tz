@@ -5,6 +5,7 @@ import { statuses } from '../../helpers';
 const initialState = {
 	tasks: [],
 	pageNum: 1,
+	pagesCount: 1,
 	filter: 'id',
 	status: statuses.INIT,
 	errorMsg: null,
