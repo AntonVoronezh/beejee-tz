@@ -82,16 +82,16 @@ const fetchTasks = service => () => (dispatch, getState) => {
 // 	dispatch(changeCountedAC());
 // };
 
-// const CHANGE_ACTIVE_PAGE_PAG = 'CHANGE_ACTIVE_PAGE_PAG';
-// const changeActivePagePagAC = page => ({
-// 	type: CHANGE_ACTIVE_PAGE_PAG,
-// 	page,
-// });
-
+const CHANGE_ACTIVE_PAG = 'CHANGE_ACTIVE_PAG';
+const changeActivePagAC = pageNum => ({
+	type: CHANGE_ACTIVE_PAG,
+	pageNum,
+});
 // const changeActivePagePag = page => dispatch => {
 // 	dispatch(changeActivePagePagAC(page));
 // 	dispatch(changeCountedAC());
 // };
+// 
 
 export {
 	fetchTasks,
@@ -101,4 +101,6 @@ export {
 	CHANGE_FILTER,
 	changeFilterAC,
 	CHANGE_PAGES_COUNT,
+	CHANGE_ACTIVE_PAG,
+	changeActivePagAC
 };

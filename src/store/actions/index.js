@@ -21,6 +21,8 @@ import {
 	CHANGE_FILTER,
 	changeFilterAC,
 	CHANGE_PAGES_COUNT,
+	CHANGE_ACTIVE_PAG,
+	changeActivePagAC
 } from './tasks';
 
 export { changeActivePageAC, CHANGE_ACTIVE_PAGE };
@@ -48,4 +50,6 @@ export {
 	CHANGE_FILTER,
 	changeFilterAC,
 	CHANGE_PAGES_COUNT,
+	CHANGE_ACTIVE_PAG,
+	changeActivePagAC
 };

@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 
-const Pagination = ({ totalCount, length, changePagPage, fetchPersonList, pagPage }) => {
-	const pageCount = Math.ceil(totalCount / length);
-	
+import './Pagination.css'
+
+const Pagination = ({ tasksCount, tasks, changePagPage = () => {}, pagPage = 1 }) => {
+	const pageCount = Math.ceil(tasksCount / tasks.length);
+
 	const onPageChange = ({ selected }) => {
 		changePagPage(selected + 1);
-		fetchPersonList();
 	};
 
 	const pag =
-		totalCount !== 0 ? (
+		tasksCount !== 0 ? (
 			<ReactPaginate
 				previousLabel={'previous'}
 				nextLabel={'next'}
@@ -19,14 +20,14 @@ const Pagination = ({ totalCount, length, changePagPage, fetchPersonList, pagPag
 				pageCount={pageCount}
 				marginPagesDisplayed={2}
 				pageRangeDisplayed={5}
-				containerClassName={'pagination'}
+				containerClassName={'uk-pagination'}
 				pageClassName={'page-item'}
-				previousClassName={'page-item'}
-				nextClassName={'page-item'}
+				previousClassName={'uk-pagination-previous'}
+				nextClassName={'uk-pagination-next'}
 				pageLinkClassName={'page-link'}
 				previousLinkClassName={'page-link'}
 				nextLinkClassName={'page-link'}
-				activeClassName={'active'}
+				activeClassName={'uk-active-pag'}
 				onPageChange={onPageChange}
 				forcePage={pagPage - 1}
 			/>
