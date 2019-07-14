@@ -33,9 +33,13 @@ const TopMenu = ({ onChange, location, menuList, name }) => {
 	);
 };
 
-export default TopMenu;
-
 TopMenu.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	menuList: PropTypes.array.isRequired,
+	name: PropTypes.string.isRequired,
+	location: PropTypes.object.isRequired,
 };
+
+export default TopMenu;
+
+
