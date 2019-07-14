@@ -50,8 +50,6 @@ export default class AuthService {
 		formData.append('signature', signature);
 		formData.append('mimeType', 'multipart/form-data');
 
-		console.log(formData);
-
 		const response = await this._axiosInstance.post(endPoint, formData);
 
 		return this._getResourse(response, endPoint);

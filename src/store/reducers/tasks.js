@@ -7,6 +7,7 @@ import {
 	CHANGE_ACTIVE_PAG,
 	ADD_TASK,
 	EDIT_TASK,
+	CHANGE_STATUS,
 } from '../actions';
 
 import { statuses } from '../../helpers';
@@ -96,6 +97,14 @@ const filterRreducer = (state = initialState, action) => {
 					status,
 					text: editTask.text,
 				},
+			};
+		}
+		case CHANGE_STATUS: {
+			debugger
+			return {
+				...state,
+				status: statuses.SUCCESS,
+				errorMsg: null,
 			};
 		}
 
