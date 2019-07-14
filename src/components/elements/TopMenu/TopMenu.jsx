@@ -36,7 +36,7 @@ const TopMenu = ({ onChange, location, menuList, name }) => {
 TopMenu.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	menuList: PropTypes.array.isRequired,
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 	location: PropTypes.object.isRequired,
 };
 

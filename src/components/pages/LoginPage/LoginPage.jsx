@@ -50,12 +50,13 @@ const LoginPage = ({ userNameText, passwordText, onUsernameChange, onPasswordCha
 	);
 };
 
-export default LoginPage;
-
 LoginPage.propTypes = {
 	userNameText: PropTypes.string.isRequired,
 	passwordText: PropTypes.string.isRequired,
 	errorMsg: PropTypes.string,
 	onUsernameChange: PropTypes.func.isRequired,
 	onPasswordChange: PropTypes.func.isRequired,
+	onLogin: PropTypes.func.isRequired,
 };
+
+export default LoginPage;
