@@ -51,5 +51,12 @@ const Task = ({ id, username, email, text, status, isLoggedIn, editTask, onEditT
 export default Task;
 
 Task.propTypes = {
-	// name: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	username: PropTypes.string.isRequired,
+	email: PropTypes.string.isRequired,
+	text: PropTypes.string.isRequired,
+	status: PropTypes.number.isRequired,
+	isLoggedIn: PropTypes.bool.isRequired,
+	editTask: PropTypes.func.isRequired,
+	onEditTask: PropTypes.func.isRequired,
 };
