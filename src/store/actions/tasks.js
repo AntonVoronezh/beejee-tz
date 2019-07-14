@@ -99,6 +99,11 @@ const editTaskAC = editTask => ({
 	editTask,
 });
 
+const CHANGE_STATUS = 'CHANGE_STATUS';
+const changeStatusAC = () => ({
+	type: EDCHANGE_STATUSIT_TASK,
+});
+
 const editTask = service => () => (dispatch, getState) => {
 	dispatch(fetchTasksRequestAC());
 
@@ -113,9 +118,9 @@ const editTask = service => () => (dispatch, getState) => {
 		.then(data => {
 			const { status } = data;
 			if (status === 'ok') {
-				console.log('+');
+				changeStatusAC();
 			} else if (status === 'error') {
-				console.log('-');
+				changeStatusAC();
 			}
 		})
 
@@ -137,5 +142,5 @@ export {
 	addTaskAC,
 	EDIT_TASK,
 	editTaskAC,
-	editTask
+	editTask,
 };
