@@ -56,9 +56,9 @@ const NewTask = ({ createTask, addTask }) => {
 	);
 };
 
-export default NewTask;
-
 NewTask.propTypes = {
-	// activePage: PropTypes.number.isRequired,
-	// onChange: PropTypes.func.isRequired,
+	createTask: PropTypes.func.isRequired,
+	addTask: PropTypes.func.isRequired,
 };
+
+export default NewTask;
