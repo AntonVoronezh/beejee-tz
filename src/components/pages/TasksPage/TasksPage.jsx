@@ -57,9 +57,15 @@ const FilterPage = ({
 	);
 };
 
-export default FilterPage;
-
 FilterPage.propTypes = {
 	errorMsg: PropTypes.string,
-	tasks: PropTypes.array,
+	tasks: PropTypes.array.isRequired,
+	changeFilter: PropTypes.func.isRequired,
+	createTask: PropTypes.func.isRequired,
+	addTask: PropTypes.func.isRequired,
+	isLoggedIn: PropTypes.bool.isRequired,
+	editTask: PropTypes.func.isRequired,
+	onEditTask: PropTypes.func.isRequired,
 };
+
+export default FilterPage;
