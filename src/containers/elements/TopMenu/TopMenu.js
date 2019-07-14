@@ -29,7 +29,7 @@ const mapStateToProps = ({ menu: { activePage }, login: { isLoggedIn, name } }) 
 	return {
 		activePage,
 		isLoggedIn,
-		name
+		name,
 	};
 };
 
@@ -43,4 +43,3 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(withRouter(TopMenuContainer));
-

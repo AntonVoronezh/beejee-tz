@@ -30,7 +30,7 @@ const mapStateToProps = ({ login }) => {
 	};
 };
 
-	const mapDispatchToProps = (dispatch, { authService }) => {
+const mapDispatchToProps = (dispatch, { authService }) => {
 	return bindActionCreators(
 		{
 			onUsernameChange: changeUsernameTextAC,
@@ -47,4 +47,3 @@ export default withAuthService()(
 		mapDispatchToProps
 	)(LoginPageContainer)
 );
-
