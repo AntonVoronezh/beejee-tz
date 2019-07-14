@@ -44,7 +44,6 @@ const fetchTasks = service => () => (dispatch, getState) => {
 				} = data;
 				dispatch(fetchTasksSuccessAC(tasks));
 				dispatch(changePagesCountAC(Number(total_task_count)));
-				// dispatch(changePaginationCountAC());
 			} else if (status === 'error') {
 				const { message } = data;
 				dispatch(fetchTasksFailureAC(message));
@@ -64,12 +63,13 @@ const createTask = service => () => (dispatch, getState) => {
 	dispatch(fetchTasksRequestAC());
 
 	const {
-		tasks: { newTask: {username, email, text} },
+		tasks: {
+			newTask: { username, email, text },
+		},
 	} = getState();
 
 	service
 		.createTask(username, email, text)
-		// .createTask('aaaa', 'ff@mm.yu', 'fdgdfgdfgdgdgfdfghdg')
 		.then(data => {
 			const { status } = data;
 			if (status === 'ok') {
@@ -78,7 +78,6 @@ const createTask = service => () => (dispatch, getState) => {
 				} = data;
 				dispatch(fetchTasksSuccessAC(tasks));
 				dispatch(changePagesCountAC(Number(total_task_count)));
-				// dispatch(changePaginationCountAC());
 			} else if (status === 'error') {
 				const { message } = data;
 				dispatch(fetchTasksFailureAC(message[0]));
@@ -88,13 +87,40 @@ const createTask = service => () => (dispatch, getState) => {
 		.catch(err => dispatch(fetchTasksFailureAC(err.message[0])));
 };
 
-
-
 const CHANGE_ACTIVE_PAG = 'CHANGE_ACTIVE_PAG';
 const changeActivePagAC = pageNum => ({
 	type: CHANGE_ACTIVE_PAG,
 	pageNum,
 });
+
+const EDIT_TASK = 'EDIT_TASK';
+const editTaskAC = editTask => ({
+	type: EDIT_TASK,
+	editTask,
+});
+
+const editTask = service => () => (dispatch, getState) => {
+	dispatch(fetchTasksRequestAC());
+
+	const {
+		tasks: {
+			editTask: { id, status, text },
+		},
+	} = getState();
+
+	service
+		.editTask(id, status, text)
+		.then(data => {
+			const { status } = data;
+			if (status === 'ok') {
+				console.log('+');
+			} else if (status === 'error') {
+				console.log('-');
+			}
+		})
+
+		.catch(err => dispatch(fetchTasksFailureAC(err.message[0])));
+};
 
 export {
 	fetchTasks,
@@ -108,5 +134,8 @@ export {
 	changeActivePagAC,
 	createTask,
 	ADD_TASK,
-	addTaskAC
+	addTaskAC,
+	EDIT_TASK,
+	editTaskAC,
+	editTask
 };

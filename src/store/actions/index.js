@@ -25,7 +25,10 @@ import {
 	changeActivePagAC,
 	createTask,
 	ADD_TASK,
-	addTaskAC
+	addTaskAC,
+	EDIT_TASK,
+	editTaskAC,
+	editTask
 } from './tasks';
 
 export { changeActivePageAC, CHANGE_ACTIVE_PAGE };
@@ -57,5 +60,8 @@ export {
 	changeActivePagAC,
 	createTask,
 	ADD_TASK,
-	addTaskAC
+	addTaskAC,
+	EDIT_TASK,
+	editTaskAC,
+	editTask
 };

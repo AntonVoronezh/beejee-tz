@@ -5,8 +5,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "encode-3986": "^1.0.0",
     "gh-pages": "^2.0.1",
     "prop-types": "^15.7.2",
+    "pure-md5": "^0.1.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-js-pagination": "^3.0.2",
@@ -15,7 +17,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
-    "uikit": "^3.1.6"
+    "uikit": "^3.1.6",
+    "uri-utils": "^1.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

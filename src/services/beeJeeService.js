@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { md5 } from 'pure-md5';
+import { encode } from 'uri-utils';
 
 export default class AuthService {
 	_axiosInstance = axios.create({
 		baseURL: 'https://uxcandy.com/~shapoval/test-task-backend/',
-		// withCredentials: true,
 		headers: {
 			'content-type': 'application/json',
 		},
@@ -26,25 +27,30 @@ export default class AuthService {
 
 	createTask = async (username, email, text) => {
 		const endPoint = `create?developer=anton`;
-		
-		const formData = new FormData();
-		formData.append('username', username);
-		formData.append('email', email);
-		formData.append('text', text);
-		formData.append('mimeType', 'multipart/form-data');
 
-		const response = await this._axiosInstance.post(endPoint, formData);
+		const formDatar = new FormData();
+		formDatar.append('username', username);
+		formDatar.append('email', email);
+		formDatar.append('text', text);
+		formDatar.append('mimeType', 'multipart/form-data');
+
+		const response = await this._axiosInstance.post(endPoint, formDatar);
 
 		return this._getResourse(response, endPoint);
 	};
 
-	editTask = async (id, text, status) => {
-		const endPoint = `edit/:${id}?developer=anton`;
-		
+	editTask = async (id, status, text) => {
+		const endPoint = `edit/${id}?developer=anton`;
+		const signature = md5(`status=${status}&text=${encode(text)}&token=beejee`);
+
 		const formData = new FormData();
 		formData.append('status', status);
 		formData.append('text', text);
+		formData.append('token', 'beejee');
+		formData.append('signature', signature);
 		formData.append('mimeType', 'multipart/form-data');
+
+		console.log(formData);
 
 		const response = await this._axiosInstance.post(endPoint, formData);
 

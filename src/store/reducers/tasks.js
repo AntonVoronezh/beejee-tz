@@ -6,6 +6,7 @@ import {
 	CHANGE_PAGES_COUNT,
 	CHANGE_ACTIVE_PAG,
 	ADD_TASK,
+	EDIT_TASK,
 } from '../actions';
 
 import { statuses } from '../../helpers';
@@ -22,10 +23,15 @@ const initialState = {
 		email: null,
 		text: null,
 	},
+	editTask: {
+		id: null,
+		text: null,
+		status: null,
+	},
 };
 
 const filterRreducer = (state = initialState, action) => {
-	const { type, tasks, errorMsg, filter, tasksCount, pageNum, newTask } = action;
+	const { type, tasks, errorMsg, filter, tasksCount, pageNum, newTask, editTask } = action;
 
 	switch (type) {
 		case FETCH_TASKS_REQUEST: {
@@ -78,6 +84,17 @@ const filterRreducer = (state = initialState, action) => {
 					username,
 					email,
 					text,
+				},
+			};
+		}
+		case EDIT_TASK: {
+			const { id, status } = editTask;
+			return {
+				...state,
+				editTask: {
+					id,
+					status,
+					text: editTask.text,
 				},
 			};
 		}

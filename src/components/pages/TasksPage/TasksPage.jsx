@@ -6,11 +6,19 @@ import { Task } from '../../elements';
 import { Pagination } from '../../../containers/elements';
 import { NewTask } from '../../elements/';
 
-const FilterPage = ({ errorMsg, tasks: tasksArr = [], changeFilter, createTask, addTask, isLoggedIn }) => {
-
+const FilterPage = ({
+	errorMsg,
+	tasks: tasksArr = [],
+	changeFilter,
+	createTask,
+	addTask,
+	isLoggedIn,
+	editTask,
+	onEditTask,
+}) => {
 	const error = errorMsg ? <div className="uk-text-danger">{errorMsg}</div> : null;
 	const tasks = tasksArr.map((el, idx) => {
-		return <Task key={idx} {...el} isLoggedIn={isLoggedIn}/>;
+		return <Task key={idx} {...el} isLoggedIn={isLoggedIn} editTask={editTask} onEditTask={onEditTask} />;
 	});
 
 	const changeSortButtonHandler = status => {

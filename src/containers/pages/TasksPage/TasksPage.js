@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { TasksPage } from '../../../components/pages';
-import { fetchTasks, changeFilterAC, createTask, addTaskAC } from '../../../store/actions';
+import { fetchTasks, changeFilterAC, createTask, addTaskAC, editTaskAC, editTask } from '../../../store/actions';
 import { withTasksService } from '../../../hoc';
 import { statuses } from '../../../helpers';
 import { Spinner } from '../../../components/elements';
@@ -44,13 +44,25 @@ class TasksPageContainer extends Component {
 			changeFilter,
 			createTask,
 			addTask,
+			editTask,
+			onEditTask
 		} = this.props;
 
 		if (status === statuses.REQUEST) {
 			return <Spinner />;
 		}
 
-		return <TasksPage {...rest} isLoggedIn={isLoggedIn} changeFilter={changeFilter} createTask={createTask} addTask={addTask} />;
+		return (
+			<TasksPage
+				{...rest}
+				isLoggedIn={isLoggedIn}
+				changeFilter={changeFilter}
+				createTask={createTask}
+				addTask={addTask}
+				editTask={editTask}
+				onEditTask={onEditTask}
+			/>
+		);
 	}
 }
 
@@ -68,6 +80,8 @@ const mapDispatchToProps = (dispatch, { tasksService }) => {
 			changeFilter: changeFilterAC,
 			createTask: createTask(tasksService),
 			addTask: addTaskAC,
+			editTask: editTaskAC,
+			onEditTask: editTask(tasksService),
 		},
 		dispatch
 	);

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import './Task.css';
 
-const Task = ({ id, username, email, text, status, isLoggedIn }) => {
+const Task = ({ id, username, email, text, status, isLoggedIn, editTask, onEditTask }) => {
 	const [newText, setNewText] = useState(text);
 	const [newStatus, setnewStatus] = useState(status);
 
 	const changeClickHandle = () => {
-		console.log(newText, newStatus);
-		
-	}
+		editTask({ id, status: newStatus, text: newText });
+		onEditTask();
+	};
 
 	const statusRes = isLoggedIn ? (
 		<input
